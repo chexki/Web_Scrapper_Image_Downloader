@@ -11,7 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 import ssl
 options = FirefoxOptions()
-#options.add_argument("--headless")
+options.add_argument("--headless")
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -27,14 +27,14 @@ class Scraper:
         return url_list
 
     def source_grabber(self,main):
-        ext_img_http_urls = [] #list of html page source  # From Selenium
-        driver = webdriver.Firefox(options=options)
+        ext_img_http_urls = []        #list of html page source  # From Selenium
+        driver = webdriver.Firefox(options=options,service_log_path='nul')  # service_log_path to prevent log
         for urls in main:
-            try:
-                driver(urls)
-                ext_img_http_urls.append(driver.page_source)
-            except:
-                continue
+		try:
+			driver(urls)
+			ext_img_http_urls.append(driver.page_source)
+            	except:
+                	continue
         driver.quit()
         return ext_img_http_urls
 
@@ -50,6 +50,7 @@ class Scraper:
 
 
     def image_downloader(self,img_url: str,pic_length):
+	# Credits : amitupreti
         """
         Input:
         param: img_url  str (Image url)
