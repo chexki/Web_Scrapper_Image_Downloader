@@ -35,7 +35,7 @@ class Scraper:
                 ext_img_http_urls.append(driver.page_source)
             except:
                 continue
-        #driver.quit()
+        driver.quit()
         return ext_img_http_urls
 
     def img_link_extractor(self,sources):
