@@ -26,3 +26,5 @@ Using Selenium to navigate and scrap sublinks available in Webpage for categorie
 
 
 
+
+Note : This code is created for educational purpose only. ( Kindly Do Not Misuse )  
