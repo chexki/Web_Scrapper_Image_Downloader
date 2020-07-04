@@ -120,12 +120,14 @@ class Scraper:
     def classifier_caregory(self):
         # Generates Link
         url_list = self.link_from_categories()
-        # Page Source
+        # Initial Page Source
         ext_img_http_urls = self.source_grabber(url_list)
-        # Insider Links links Regex
-        inside_links = self.source_grabber(ext_img_http_urls)
+        # Insider Links Initial Regex
+        inside_links = self.img_link_extractor(ext_img_http_urls)
+        # Secondary / Main Images Page Source
+        sec_img_http_urls = self.source_grabber(inside_links)	
         # Media links Regex
-        media = self.img_link_extractor(inside_links)
+        media = self.img_link_extractor(sec_img_http_urls)
 	# Actual Download Media
         self.hit_download(media)
         return "Download Complete"
