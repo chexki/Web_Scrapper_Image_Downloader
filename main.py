@@ -122,9 +122,11 @@ class Scraper:
         url_list = self.link_from_categories()
         # Page Source
         ext_img_http_urls = self.source_grabber(url_list)
+        # Insider Links links Regex
+        inside_links = self.source_grabber(ext_img_http_urls)
         # Media links Regex
-        media = self.img_link_extractor(ext_img_http_urls)
-        # Actual Download Media
+        media = self.img_link_extractor(inside_links)
+	# Actual Download Media
         self.hit_download(media)
         return "Download Complete"
 
